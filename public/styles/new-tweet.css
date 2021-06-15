@@ -5,7 +5,12 @@
 
 #tweet-text {
   display: flex;
-  opacity: 0.5;
+  resize: none;
+  background-color: transparent;
+  padding: 0px;
+  border: 0px;
+  border-bottom: 4px solid maroon;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .submit-counter {
@@ -13,6 +18,21 @@
   justify-content: space-between;
 }
 
-hr {
-  size: inherit;
+textarea::placeholder {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+button {
+  font-family: 'Bungee', cursive;
+  color: white;
+  background-color: #4056A1;
+  border: 0px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+output {
+  font-family: 'Bungee', cursive;
 }
