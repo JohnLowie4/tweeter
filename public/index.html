@@ -13,6 +13,7 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
 
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -36,7 +37,7 @@
   
     <header class="profile">
       <div class="profile-pic">
-        <img src="/images/profile-hex.png" width="160px" height="160px"> 
+        <img src="/images/profile-hex.png" width="150px" height="150px"> 
       </div>
       <br>
       <div class="profile-name">
@@ -46,7 +47,19 @@
 
     <!-- Page-specific (main) content here -->
     <main class="container">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae obcaecati recusandae incidunt exercitationem ab magnam sint voluptatem eum quibusdam laboriosam voluptatum, unde quis autem suscipit delectus molestias nisi dicta eveniet.
+
+      <section class="new-tweet">
+        <form method="POST" action="/tweets" class="tweet-box">
+          <textarea name="text" id="tweet-text" placeholder="What are you hamming about?"></textarea>
+          <hr>
+          <div class="submit-counter">
+            <button type="submit">Tweet</button>
+            <output name="counter" class="counter" for="tweet-text">140</output>
+          </div>
+        </form>
+      </section>
+
     </main>
+
   </body>
 </html>
