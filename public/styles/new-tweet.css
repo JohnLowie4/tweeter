@@ -1,0 +1,18 @@
+.tweet-box {
+  display: flex;
+  flex-direction: column;
+}
+
+#tweet-text {
+  display: flex;
+  opacity: 0.5;
+}
+
+.submit-counter {
+  display: flex;
+  justify-content: space-between;
+}
+
+hr {
+  size: inherit;
+}
