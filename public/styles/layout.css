@@ -25,7 +25,8 @@ body {
  */
 
  .container {
-   margin-left: 5%;
-   margin-right: 5%;
+   margin: 5%;
+   /* margin-left: 5%; */
+   /* margin-right: 5%; */
    background-color: inherit;
  }
