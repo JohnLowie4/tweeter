@@ -33,6 +33,10 @@ const data = [
 
 $(document).ready(function () {
 
+  /**
+   * Renders tweets saved in data onto the webpage
+   * @param {Array} tweets 
+   */
   const renderTweets = function (tweets) {
     // loops through tweets
     for (const tweet of tweets) {
@@ -44,6 +48,11 @@ $(document).ready(function () {
     }
   };
 
+  /**
+   * Creates an html template from the data in tweet and returns it to caller
+   * @param {Object} tweet 
+   * @returns an html template literal
+   */
   const createTweetElement = function (tweet) {
     const user = tweet["user"];
     const content = tweet["content"];
