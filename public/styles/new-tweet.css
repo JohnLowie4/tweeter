@@ -6,6 +6,7 @@
 #tweet-text {
   display: flex;
   resize: none;
+  height: 42px;
   background-color: transparent;
   padding: 0px;
   border: 0px;
@@ -20,6 +21,7 @@
 
 textarea::placeholder {
   font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 600;
 }
 
 button {

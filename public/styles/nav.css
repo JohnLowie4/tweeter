@@ -35,6 +35,7 @@ i {
   top: 0;
   left: 0;
   background-image: url("../images/pf-background.png");
+  background-color: darkgoldenrod;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
