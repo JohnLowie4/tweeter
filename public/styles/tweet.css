@@ -1,15 +1,14 @@
-
-
-.tweet-container {
+.tweet-body {
   font-family: 'Source Sans Pro', sans-serif;
   border: 4px solid #696969;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-content: center;
   transition: box-shadow .3s;
 }
 
-.tweet-container:hover {
+.tweet-body:hover {
   box-shadow: 5px 5px #9aaff4;
 }
 
