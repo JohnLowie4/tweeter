@@ -26,5 +26,5 @@ $(document).ready(function() {
       }
   });
 
-  console.log("its working");
+  console.log("Text area working!");
 });
