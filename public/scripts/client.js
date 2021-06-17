@@ -31,6 +31,9 @@ const data = [
   }
 ];
 
+/**
+ * 
+ */
 $(document).ready(function () {
 
   /**
@@ -87,4 +90,11 @@ $(document).ready(function () {
   };
 
 renderTweets(data);
+});
+
+$(document).submit(function() {
+  event.preventDefault();
+  console.log($("form").serialize());
+  const $newTweet = $("form").serialize();
+  $.post($("form").attr("action"), $newTweet);
 });
