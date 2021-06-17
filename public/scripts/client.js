@@ -35,6 +35,11 @@
  * 
  */
 $(document).ready(function () {
+  const escape = function(str) {
+    let div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
 
   /**
    * Renders tweets saved in data onto the webpage
@@ -75,7 +80,7 @@ $(document).ready(function () {
           </div>
         </div>
         <div class="tweet-content">
-          <p>${content["text"]}</p>
+          <p>${escape(content["text"])}</p>
         </div>
         <div class="tweet-footer">
           <div class="time"><span class="need_to_be_rendered">${time}</span></div>
@@ -106,11 +111,11 @@ $(document).ready(function () {
    * Submits a post request to server
    */
   $('.tweet-box').submit(function (event) {
+    // Prevents the default submit to execute
     event.preventDefault();
 
     const $newTweet = $(".tweet-box").serialize();
     const textChecker = $('#tweet-text').val();
-    // console.log($newTweet);
     if (textChecker.length === 0) {
       alert("There is nothing to tweet");
     } else if (textChecker.length > 140) {
