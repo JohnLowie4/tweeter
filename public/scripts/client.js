@@ -41,6 +41,9 @@ $(document).ready(function () {
    * @param {Array} tweets 
    */
   const renderTweets = function (tweets) {
+    $("#tweets-container").empty();
+    // Reverse array to post the newest tweet at the top
+    tweets.reverse();
     // loops through tweets
     for (const tweet of tweets) {
       // calls createTweetElement for each tweet
@@ -92,46 +95,35 @@ $(document).ready(function () {
   // This is responsible for fetching tweets from /tweets
   // Should I be using ajax or the jQuery.get??
   const loadtweets = function() {
-    $.ajax("/tweets", { Method: 'GET' })
+    $.ajax("/tweets")
       .then(function(results) {
         console.log(results);
         renderTweets(results);
       });
   };
 
-  loadtweets();
-  // renderTweets(data);
-
   /**
    * Submits a post request to server
    */
-  $(document).submit(function () {
+  $('.tweet-box').submit(function (event) {
     event.preventDefault();
 
-    /**
-     * Takes a string counts the number of characters
-     * @param {String} str 
-     * @returns Boolean
-     */
-    const numCharChecker = function (str) {
-      const reEval = str.replaceAll('%20', ' ');
-      if (reEval.length > 140) {
-        return false;
-      }
-      return true;
-    };
-
-    const $newTweet = $("form").serialize();
-    const textChecker = $newTweet.replaceAll('%20', '');
+    const $newTweet = $(".tweet-box").serialize();
+    const textChecker = $('#tweet-text').val();
     // console.log($newTweet);
-    if (textChecker === "text=") {
+    if (textChecker.length === 0) {
       alert("There is nothing to tweet");
-    } else if (!numCharChecker($newTweet)) {
+    } else if (textChecker.length > 140) {
       alert("Your tweet is too long");
-    } else if (numCharChecker($newTweet)) {
-      $.post($("form").attr("action"), $newTweet);
-      document.getElementById("tweet-text").value = "";
+    } else if (textChecker.length > 0 && textChecker.length <= 140) {
+      $.post("/tweets", $newTweet)
+        .then(function () {
+          $('#tweet-text').val('');
+          $(".counter").val(140);
+          loadtweets();
+        });
     }
   });
 
+  loadtweets();
 });
