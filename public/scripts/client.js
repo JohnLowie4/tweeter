@@ -109,6 +109,23 @@ $(document).ready(function () {
  */
 $(document).submit(function() {
   event.preventDefault();
+
+  const numCharChecker = function(str) {
+    const reEval = str.replaceAll('%20', ' ');
+    if (reEval.length > 140) {
+      return false;
+    }
+    return true;
+  };
+
   const $newTweet = $("form").serialize();
-  $.post($("form").attr("action"), $newTweet);
+  const textChecker = $newTweet.replaceAll('%20', '');
+  // console.log($newTweet);
+  if (textChecker === "text=") {
+    alert("There is nothing to tweet");
+  } else if (!numCharChecker($newTweet)) {
+    alert("Your tweet is too long");
+  } else {
+    $.post($("form").attr("action"), $newTweet);
+  }
 });
