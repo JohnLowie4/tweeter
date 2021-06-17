@@ -1,10 +1,6 @@
 $(document).ready(function() {
   // --- our code goes here ---
 
-  // $("#btn").on('click', function() {
-  //   console.log(this); //The this keyword is a reference to the button
-  // });
-
   /**
    * The following lines of code is made in reference from this site:
    *  https://codepen.io/zabielski/pen/gPPywv
