@@ -24,6 +24,9 @@ $(document).ready(function() {
       if (characterCount > 140) {
         currentNumChar.css('color', 'red');
       }
+      if (characterCount <= 140) {
+        currentNumChar.css('color', '#545149');
+      }
   });
 
   console.log("Text area working!");
