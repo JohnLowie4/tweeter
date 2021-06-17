@@ -5,31 +5,31 @@
  */
 
 // Fake data taken from initial-tweets.json
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1623708961391
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd"
-    },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-];
+// const data = [
+//   {
+//     "user": {
+//       "name": "Newton",
+//       "avatars": "https://i.imgur.com/73hZDYK.png"
+//       ,
+//       "handle": "@SirIsaac"
+//     },
+//     "content": {
+//       "text": "If I have seen further it is by standing on the shoulders of giants"
+//     },
+//     "created_at": 1623708961391
+//   },
+//   {
+//     "user": {
+//       "name": "Descartes",
+//       "avatars": "https://i.imgur.com/nlhLi3I.png",
+//       "handle": "@rd"
+//     },
+//     "content": {
+//       "text": "Je pense , donc je suis"
+//     },
+//     "created_at": 1461113959088
+//   }
+// ];
 
 /**
  * 
@@ -89,12 +89,26 @@ $(document).ready(function () {
     return $tweet;
   };
 
-renderTweets(data);
+  // This is responsible for fetching tweets from /tweets
+  // Should I be using ajax or the jQuery.get??
+  const loadtweets = function() {
+    $.ajax("/tweets", { Method: 'GET' })
+      .then(function(results) {
+        console.log(results);
+        renderTweets(results);
+      });
+  };
+
+  loadtweets();
+// renderTweets(data);
+
 });
 
+/**
+ * Submits a post request to server
+ */
 $(document).submit(function() {
   event.preventDefault();
-  console.log($("form").serialize());
   const $newTweet = $("form").serialize();
   $.post($("form").attr("action"), $newTweet);
 });
