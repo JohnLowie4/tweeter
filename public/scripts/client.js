@@ -100,32 +100,38 @@ $(document).ready(function () {
   };
 
   loadtweets();
-// renderTweets(data);
+  // renderTweets(data);
 
-});
+  /**
+   * Submits a post request to server
+   */
+  $(document).submit(function () {
+    event.preventDefault();
 
-/**
- * Submits a post request to server
- */
-$(document).submit(function() {
-  event.preventDefault();
+    /**
+     * Takes a string counts the number of characters
+     * @param {String} str 
+     * @returns Boolean
+     */
+    const numCharChecker = function (str) {
+      const reEval = str.replaceAll('%20', ' ');
+      if (reEval.length > 140) {
+        return false;
+      }
+      return true;
+    };
 
-  const numCharChecker = function(str) {
-    const reEval = str.replaceAll('%20', ' ');
-    if (reEval.length > 140) {
-      return false;
+    const $newTweet = $("form").serialize();
+    const textChecker = $newTweet.replaceAll('%20', '');
+    // console.log($newTweet);
+    if (textChecker === "text=") {
+      alert("There is nothing to tweet");
+    } else if (!numCharChecker($newTweet)) {
+      alert("Your tweet is too long");
+    } else if (numCharChecker($newTweet)) {
+      $.post($("form").attr("action"), $newTweet);
+      document.getElementById("tweet-text").value = "";
     }
-    return true;
-  };
+  });
 
-  const $newTweet = $("form").serialize();
-  const textChecker = $newTweet.replaceAll('%20', '');
-  // console.log($newTweet);
-  if (textChecker === "text=") {
-    alert("There is nothing to tweet");
-  } else if (!numCharChecker($newTweet)) {
-    alert("Your tweet is too long");
-  } else {
-    $.post($("form").attr("action"), $newTweet);
-  }
 });
