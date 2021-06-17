@@ -35,6 +35,12 @@
  * 
  */
 $(document).ready(function () {
+  
+  /**
+   * A cross-site scripting function
+   * @param {String} str 
+   * @returns String
+   */
   const escape = function(str) {
     let div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
@@ -46,6 +52,7 @@ $(document).ready(function () {
    * @param {Array} tweets 
    */
   const renderTweets = function (tweets) {
+    // Empties the body of the tweet container
     $("#tweets-container").empty();
     // Reverse array to post the newest tweet at the top
     tweets.reverse();
@@ -54,7 +61,6 @@ $(document).ready(function () {
       // calls createTweetElement for each tweet
       let $tweet = createTweetElement(tweet);
       // takes return value and appends it to the tweets container
-      console.log($tweet);
       $('#tweets-container').append($tweet);
     }
   };
@@ -93,12 +99,12 @@ $(document).ready(function () {
       </div>
 
   `);
-
     return $tweet;
   };
 
-  // This is responsible for fetching tweets from /tweets
-  // Should I be using ajax or the jQuery.get??
+  /**
+   * Loads all the tweets on server
+   */
   const loadtweets = function() {
     $.ajax("/tweets")
       .then(function(results) {
@@ -115,20 +121,23 @@ $(document).ready(function () {
     event.preventDefault();
 
     const $newTweet = $(".tweet-box").serialize();
-    const textChecker = $('#tweet-text').val();
-    if (textChecker.length === 0) {
+    const textChecker = $('#tweet-text').val().length;
+
+    // Checks if user submitted valid inputs
+    if (textChecker === 0) {
       alert("There is nothing to tweet");
-    } else if (textChecker.length > 140) {
+    } else if (textChecker > 140) {
       alert("Your tweet is too long");
-    } else if (textChecker.length > 0 && textChecker.length <= 140) {
+    } else if (textChecker > 0 && textChecker <= 140) {
       $.post("/tweets", $newTweet)
         .then(function () {
-          $('#tweet-text').val('');
-          $(".counter").val(140);
+          $('#tweet-text').val(''); // Empties the textarea
+          $(".counter").val(140); // Resets the number of available characters
           loadtweets();
         });
     }
   });
 
+  // Loads up the inital tweets in server
   loadtweets();
 });

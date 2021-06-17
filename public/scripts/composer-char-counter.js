@@ -9,6 +9,7 @@ $(document).ready(function() {
    * 
    * Counts the number of chars available to be filled in the textarea
    */
+
   $('textarea').keyup(function() {
     let characterCount = $(this).val().length,
       currentNumChar = $('.counter');
@@ -20,10 +21,10 @@ $(document).ready(function() {
       if (characterCount > 140) {
         currentNumChar.css('color', 'red');
       }
+
+      // Updates the counter color when user deletes the excess characters
       if (characterCount <= 140) {
         currentNumChar.css('color', '#545149');
       }
   });
-
-  console.log("Text area working!");
 });
