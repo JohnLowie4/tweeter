@@ -119,16 +119,35 @@ $(document).ready(function () {
   $('.tweet-box').submit(function (event) {
     // Prevents the default submit to execute
     event.preventDefault();
+    $('.error-message').empty();
+
+    // Error messages to be displayed
+    const $error1 = $(`
+      <span>
+        <i class="fas fa-exclamation-triangle"></i>
+          <p>Sorry, but there is nothing to tweet.</p>
+        <i class="fas fa-exclamation-triangle"></i>
+      </span>
+    `);
+
+    const $error2 = $(`
+      <span>
+        <i class="fas fa-exclamation-triangle"></i>
+          <p>Sorry, your tweet is too long. Please keep your tweet at 140 characters or less.</p>
+        <i class="fas fa-exclamation-triangle"></i>
+      </span>
+    `);
 
     const $newTweet = $(".tweet-box").serialize();
     const textChecker = $('#tweet-text').val().length;
 
     // Checks if user submitted valid inputs
     if (textChecker === 0) {
-      alert("There is nothing to tweet");
+      $('.error-message').append($error1);
     } else if (textChecker > 140) {
-      alert("Your tweet is too long");
+      $('.error-message').append($error2);
     } else if (textChecker > 0 && textChecker <= 140) {
+      $('.error-message').empty();
       $.post("/tweets", $newTweet)
         .then(function () {
           $('#tweet-text').val(''); // Empties the textarea
