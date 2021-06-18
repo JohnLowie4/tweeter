@@ -10,21 +10,22 @@ $(document).ready(function() {
    * Counts the number of chars available to be filled in the textarea
    */
 
-  $('textarea').keyup(function() {
+  $('textarea').keyup(function () {
+
     let characterCount = $(this).val().length,
       currentNumChar = $('.counter');
 
-      // Updates the html doc for the remainder of number of chars available
-      currentNumChar.text(140 - characterCount);
+    // Updates the html doc for the remainder of number of chars available
+    currentNumChar.text(140 - characterCount);
 
-      // Updates the counter color when number of characters exceed the given limit
-      if (characterCount > 140) {
-        currentNumChar.css('color', 'red');
-      }
+    // Updates the counter color when number of characters exceed the given limit
+    if (characterCount > 140) {
+      currentNumChar.css('color', 'red');
+    }
 
-      // Updates the counter color when user deletes the excess characters
-      if (characterCount <= 140) {
-        currentNumChar.css('color', '#545149');
-      }
+    // Updates the counter color when user deletes the excess characters
+    if (characterCount <= 140) {
+      currentNumChar.css('color', '#545149');
+    }
   });
 });
