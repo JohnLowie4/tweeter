@@ -15,3 +15,18 @@ This repository is the starter code for the project: Students will fork and clon
 
 - Express
 - Node 5.10.x or above
+- Body-parser
+- md5
+- timeago.js
+
+## devDependencies
+
+- nodemon
+
+## Warning
+
+This was developed on a M1 machine. If any dependencies are missing from your `package.json` file, please install them using. 
+
+```npm install <package> --save```
+
+Where `package` is the missing package that needs to be installed.
