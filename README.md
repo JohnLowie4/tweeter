@@ -30,3 +30,11 @@ This was developed on a M1 machine. If any dependencies are missing from your `p
 ```npm install <package> --save```
 
 Where `package` is the missing package that needs to be installed.
+
+## Sample Results
+
+!["Main page"](https://github.com/JohnLowie4/tweeter/blob/master/docs/main.png)
+
+!["Error message"](https://github.com/JohnLowie4/tweeter/blob/master/docs/error-message.png)
+
+!["Mobile format"](https://github.com/JohnLowie4/tweeter/blob/master/docs/mobile-mode.png)
